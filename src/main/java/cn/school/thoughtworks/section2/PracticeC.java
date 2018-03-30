@@ -1,9 +1,6 @@
 package cn.school.thoughtworks.section2;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PracticeC {
     Map<String, Integer> countSameElements(List<String> collection1) {
@@ -14,9 +11,10 @@ public class PracticeC {
             if(str.contains("-") || str.contains(":") || str.contains("[")){
                 String[] strList = strSplit(str);
                 if (map.containsKey(strList[0])){
-                    map.put(strList[0],map.get(strList[0])+Integer.valueOf(strList[1]));
+                    int count = map.get(strList[0])+Integer.valueOf(strList[1].trim());
+                    map.put(strList[0],count);
                 }else{
-                    map.put(strList[0],Integer.valueOf(strList[1]));
+                    map.put(strList[0],Integer.valueOf(strList[1].trim()));
                 }
 
             }else{
@@ -29,7 +27,7 @@ public class PracticeC {
         }
         return map;
     }
-    public  String[]  strSplit(String str){
+    public  static String[]  strSplit(String str){
         String[]  strList = null;
         if(str.contains("-") ) {
             strList = str.split("-");
@@ -43,11 +41,22 @@ public class PracticeC {
         return strList;
     }
 
-//    public static void main(String[] args){
-//        String str = "h[5]";
-//        for (String s:strSplit(str)) {
-//            System.out.print(s+"   ");
-//        }
-//
-//    }
+    public static void main(String[] args){
+        String str = "h[3]";
+        List<String> collection1 = Arrays.asList(
+                "a", "a", "a",
+                "e", "e", "e", "e", "e", "e", "e",
+                "h", "h", "h", "h", "h", "h", "h[3]", "h", "h",
+                "t", "t-2", "t", "t", "t", "t", "t", "t", "t[10]",
+                "f", "f", "f", "f", "f", "f", "f", "f", "f",
+                "c:8",
+                "g", "g", "g", "g", "g", "g", "g",
+                "b", "b", "b", "b", "b", "b",
+                "d-5"
+        );
+        for (String s:strSplit(str)) {
+            System.out.print(s+"   ");
+        }
+
+    }
 }
